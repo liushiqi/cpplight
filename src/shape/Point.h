@@ -20,6 +20,8 @@ class Point {
         ~Point();
 
         void setPosition(double x, double y);
+
+        Vector operator-(const Point &point) const;
 };
 
 #endif //CPPLIGHT_POINT_H

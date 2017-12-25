@@ -6,6 +6,7 @@
 #define CPPLIGHT_VECTOR_H
 
 class Point;
+
 class Vector {
     public:
         double x, y;
@@ -16,7 +17,17 @@ class Vector {
 
         Vector(const Vector &vector);
 
+        double operator*(const Vector &vector) const;
 
+        Vector operator+(const Vector &vector) const;
+
+        Vector &operator+=(const Vector &vector);
+
+        Vector operator-(const Vector &vector) const;
+
+        Vector &operator-=(const Vector &vector);
+
+        double length() const;
 };
 
 #endif //CPPLIGHT_VECTOR_H
