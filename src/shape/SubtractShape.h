@@ -18,6 +18,8 @@ class SubtractShape : virtual public Shape {
         ~SubtractShape() override;
 
         std::pair<double, double> distance(const Point &point) const override;
+
+        std::vector<Point> intersect(const Line &line) override;
 };
 
 #endif //CPPLIGHT_SUBSTRACTSHAPE_H

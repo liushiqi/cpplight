@@ -18,6 +18,8 @@ class UnionShape : virtual public Shape {
         ~UnionShape() override;
 
         std::pair<double, double> distance(const Point &point) const override;
+
+        std::vector<Point> intersect(const Line &line) override;
 };
 
 #endif //CPPLIGHT_UNIONSHAPE_H

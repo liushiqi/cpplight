@@ -19,6 +19,12 @@ class Vector {
 
         double operator*(const Vector &vector) const;
 
+        Vector operator*(double scaleRate) const;
+
+        Vector &operator*=(double scaleRate);
+
+        friend Vector operator*(double scaleRate, const Vector &vector);
+
         Vector operator+(const Vector &vector) const;
 
         Vector &operator+=(const Vector &vector);

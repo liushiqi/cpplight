@@ -22,6 +22,8 @@ class Rectangle : virtual public Shape {
         ~Rectangle() override;
 
         std::pair<double, double> distance(const Point &point) const override;
+
+        std::vector<Point> intersect(const Line &line) override;
 };
 
 #endif //CPPLIGHT_RECTANGLE_H

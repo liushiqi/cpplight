@@ -48,3 +48,8 @@ std::pair<double, double> Rectangle::distance(const Point &point) const {
         }
     }
 }
+
+std::vector<Point> Rectangle::intersect(const Line &line) {
+    // TODO
+    return std::vector<Point>();
+}
