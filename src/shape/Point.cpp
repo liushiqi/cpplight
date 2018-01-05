@@ -3,7 +3,6 @@
 //
 
 #include "Point.h"
-#include "Shape.h"
 
 Point::Point(double x, double y) : x(x), y(y) {}
 
@@ -22,7 +21,15 @@ Vector Point::operator-(const Point &point) const {
     return Vector(x - point.x, y - point.y);
 }
 
-bool Compare::operator()(const std::pair<Point, double> &points1,
-                         const std::pair<Point, double> &points2) {
-    return points1.second < points2.second;
+IntersectPoint::IntersectPoint(double x, double y, double distance, double emissive) : Point(x, y), distance(distance),
+                                                                                       emissive(emissive) {}
+
+IntersectPoint::IntersectPoint(const Vector &vector, double distance, double emissive) : Point(vector),
+                                                                                         distance(distance),
+                                                                                         emissive(emissive) {}
+
+IntersectPoint::IntersectPoint(const IntersectPoint &point) = default;
+
+bool IntersectPoint::operator<(const IntersectPoint &point) const {
+    return distance < point.distance;
 }

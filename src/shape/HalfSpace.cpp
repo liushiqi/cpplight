@@ -22,7 +22,7 @@ std::pair<double, double> HalfSpace::distance(const Point &point) const {
     return std::make_pair((point.x - base.x) * normal.x + (point.y - base.y) * normal.y, emissive);
 }
 
-std::set<std::pair<Point, double>, Compare> HalfSpace::intersect(const Line &line) {
+std::set<IntersectPoint> HalfSpace::intersect(const Line &line) {
     // TODO
-    return std::set<std::pair<Point, double>, Compare>();
+    return std::set<IntersectPoint>();
 }

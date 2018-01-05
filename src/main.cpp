@@ -4,7 +4,6 @@
 
 #include "shape/Shape.h"
 #include "shape/Scene.h"
-#include "shape/Rectangle.h"
 
 int main() {
     auto *scene = new Scene();

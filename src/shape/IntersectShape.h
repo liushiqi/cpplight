@@ -19,7 +19,7 @@ class IntersectShape : virtual public Shape {
 
         std::pair<double, double> distance(const Point &point) const override;
 
-        std::set<std::pair<Point, double>, Compare> intersect(const Line &line) override;
+        std::set<IntersectPoint> intersect(const Line &line) override;
 };
 
 #endif //CPPLIGHT_INTERSECTSHAPE_H

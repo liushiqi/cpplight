@@ -19,9 +19,9 @@ std::pair<double, double> Circle::distance(const Point &point) const {
     return std::make_pair(std::sqrt(xDistance * xDistance + yDistance * yDistance) - radius, emissive);
 }
 
-std::set<std::pair<Point, double>, Compare> Circle::intersect(const Line &line) {
-    std::set<std::pair<Point, double>, Compare> points;
-    points.insert(std::make_pair(line.point, 0));
+std::set<IntersectPoint> Circle::intersect(const Line &line) {
+    std::set<IntersectPoint> points;
+    points.insert(IntersectPoint(line.point, 0.0, this->emissive));
     Vector cenToPoi = line.point - center;
     double lenCenToPoi = cenToPoi.length();
     double lenDir = line.direction.length();
@@ -31,14 +31,14 @@ std::set<std::pair<Point, double>, Compare> Circle::intersect(const Line &line) 
     if (delta > 0) {
         double n = (std::sqrt(delta) - 2 * dot) / (2 * std::pow(lenDir, 2));
         if (n > 0)
-            points.insert(std::make_pair(cenToPoi + center + line.direction * n, n * line.direction.length()));
+            points.insert(IntersectPoint(cenToPoi + center + line.direction * n, n * lenDir, this->emissive));
         n = (-std::sqrt(delta) - 2 * dot) / (2 * std::pow(lenDir, 2));
         if (n > 0)
-            points.insert(std::make_pair(cenToPoi + center + line.direction * n, n * line.direction.length()));
+            points.insert(IntersectPoint(cenToPoi + center + line.direction * n, n * lenDir, this->emissive));
     } else if (std::abs(delta) < 1e-6) {
         double n = -dot / std::pow(lenDir, 2);
         if (n > 0)
-            points.insert(std::make_pair(cenToPoi + line.direction * n, n * line.direction.length()));
+            points.insert(IntersectPoint(cenToPoi + line.direction * n, n * lenDir, this->emissive));
     }
     return points;
 }

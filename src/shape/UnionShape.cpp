@@ -16,7 +16,7 @@ std::pair<double, double> UnionShape::distance(const Point &point) const {
     return distance1.first < distance2.first ? distance1 : distance2;
 }
 
-std::set<std::pair<Point, double>, Compare> UnionShape::intersect(const Line &line) {
+std::set<IntersectPoint> UnionShape::intersect(const Line &line) {
     // TODO
-    return std::set<std::pair<Point, double>, Compare>();
+    return std::set<IntersectPoint>();
 }

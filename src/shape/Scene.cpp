@@ -46,21 +46,19 @@ double Scene::oldTrace(const Point &point, double degree) {
 
 double Scene::trace(const Point &point, double degree) {
     Line line(point, std::cos(degree), std::sin(degree));
-    std::set<std::pair<Point, double>, Compare> insertedPoints;
-    Shape *minimumShape = *shapes.begin();
+    double minDistance = std::numeric_limits<double>::max();
+    double emissive = 0.0f;
     for (auto shape : shapes) {
         auto points = shape->intersect(line);
-        for (auto &pointMessage : points) {
-            if ((*(points.begin()++)).second > pointMessage.second)
-                minimumShape = shape;
-            insertedPoints.insert(pointMessage);
+        if (points.size() > 1) {
+            auto poi = *(points.begin()++);
+            if (poi.distance < minDistance) {
+                emissive = poi.emissive;
+                minDistance = poi.distance;
+            }
         }
     }
-    if (insertedPoints.size() == 1) {
-        return 0;
-    } else {
-        return minimumShape->getEmissive();
-    }
+    return emissive;
 }
 
 double Scene::sample(const Point &point) {

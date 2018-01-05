@@ -11,11 +11,6 @@
 
 class Shape;
 
-struct Compare {
-    bool operator()(const std::pair<Point, double> &points1,
-                    const std::pair<Point, double> &points2);
-};
-
 class Point {
     public:
         double x, y;
@@ -31,6 +26,21 @@ class Point {
         void setPosition(double x, double y);
 
         Vector operator-(const Point &point) const;
+};
+
+
+class IntersectPoint : virtual public Point {
+    public:
+        double distance;
+        double emissive;
+
+        IntersectPoint(double x, double y, double distance, double emissive);
+
+        IntersectPoint(const Vector &vector, double distance, double emissive);
+
+        IntersectPoint(const IntersectPoint &point);
+
+        bool operator<(const IntersectPoint &point) const;
 };
 
 #endif //CPPLIGHT_POINT_H

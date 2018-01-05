@@ -49,7 +49,7 @@ std::pair<double, double> Rectangle::distance(const Point &point) const {
     }
 }
 
-std::set<std::pair<Point, double>, Compare> Rectangle::intersect(const Line &line) {
+std::set<IntersectPoint> Rectangle::intersect(const Line &line) {
     // TODO
-    return std::set<std::pair<Point, double>, Compare>();
+    return std::set<IntersectPoint>();
 }
