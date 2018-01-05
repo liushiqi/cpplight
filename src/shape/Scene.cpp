@@ -19,31 +19,6 @@ void Scene::add(Shape *shape) {
     shapes.push_back(shape);
 }
 
-std::pair<double, double> Scene::distance(const Point &point) {
-    auto minDistance = shapes.front()->distance(point);
-    for (auto &shape : shapes) {
-        auto distance = shape->distance(point);
-        if (minDistance.first > distance.first) {
-            minDistance = distance;
-        }
-    }
-    return minDistance;
-}
-
-double Scene::oldTrace(const Point &point, double degree) {
-    double trace = 0.001, dx = std::cos(degree), dy = std::sin(degree);
-    Point tracedPoint(point);
-    for (int i = 0; i < MAX_TRACE_STEP && trace < MAX_TRACE_DISTANCE; ++i) {
-        tracedPoint.setPosition(point.x + dx * trace, point.y + dy * trace);
-        auto pair = distance(tracedPoint);
-        if (pair.first < EPSILON) {
-            return pair.second;
-        }
-        trace += pair.first;
-    }
-    return 0.0;
-}
-
 double Scene::trace(const Point &point, double degree) {
     Line line(point, std::cos(degree), std::sin(degree));
     double minDistance = std::numeric_limits<double>::max();

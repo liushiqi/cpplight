@@ -11,11 +11,6 @@ UnionShape::~UnionShape() {
     delete shape2;
 }
 
-std::pair<double, double> UnionShape::distance(const Point &point) const {
-    auto distance1 = shape1->distance(point), distance2 = shape2->distance(point);
-    return distance1.first < distance2.first ? distance1 : distance2;
-}
-
 std::set<IntersectPoint> UnionShape::intersect(const Line &line) {
     // TODO
     return std::set<IntersectPoint>();

@@ -25,10 +25,6 @@ class Scene {
 
         void add(Shape *shape);
 
-        std::pair<double, double> distance(const Point &point);
-
-        double oldTrace(const Point &point, double degree);
-
         double trace(const Point& point, double degree);
 
         double sample(const Point &point);

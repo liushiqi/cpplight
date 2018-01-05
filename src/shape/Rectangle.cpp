@@ -19,36 +19,6 @@ Rectangle::Rectangle(double centerX, double centerY, double width, double height
 
 Rectangle::~Rectangle() = default;
 
-std::pair<double, double> Rectangle::distance(const Point &point) const {
-    Vector relative = point - center;
-    double widthDistance = halfWidthVector * relative / halfWidthVector.length();
-    double heightDistance = halfHeightVector * relative / halfHeightVector.length();
-    if (widthDistance > halfWidthVector.length()) {
-        if (heightDistance > halfHeightVector.length()) {
-            return std::make_pair((relative - halfHeightVector - halfWidthVector).length(), emissive);
-        } else if (heightDistance < -halfHeightVector.length()) {
-            return std::make_pair((relative + halfHeightVector - halfWidthVector).length(), emissive);
-        } else {
-            return std::make_pair(std::abs(widthDistance) - halfWidthVector.length(), emissive);
-        }
-    } else if (widthDistance < -halfWidthVector.length()) {
-        if (heightDistance > halfHeightVector.length()) {
-            return std::make_pair((relative - halfHeightVector + halfWidthVector).length(), emissive);
-        } else if (heightDistance < -halfHeightVector.length()) {
-            return std::make_pair((relative + halfHeightVector + halfWidthVector).length(), emissive);
-        } else {
-            return std::make_pair(std::abs(widthDistance) - halfWidthVector.length(), emissive);
-        }
-    } else {
-        if (std::abs(heightDistance) > halfHeightVector.length()) {
-            return std::make_pair(std::abs(heightDistance) - halfHeightVector.length(), emissive);
-        } else {
-            return std::make_pair(std::max(std::abs(widthDistance) - halfWidthVector.length(),
-                                           std::abs(heightDistance) - halfHeightVector.length()), emissive);
-        }
-    }
-}
-
 std::set<IntersectPoint> Rectangle::intersect(const Line &line) {
     // TODO
     return std::set<IntersectPoint>();

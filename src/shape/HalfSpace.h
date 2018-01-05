@@ -23,8 +23,6 @@ class HalfSpace : virtual public Shape {
 
         ~HalfSpace() override;
 
-        std::pair<double, double> distance(const Point &point) const override;
-
         std::set<IntersectPoint> intersect(const Line &line) override;
 };
 

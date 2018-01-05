@@ -14,11 +14,6 @@ Circle::Circle(double centerX, double centerY, double radius, double emissive) :
 
 Circle::~Circle() = default;
 
-std::pair<double, double> Circle::distance(const Point &point) const {
-    double xDistance = point.x - center.x, yDistance = point.y - center.y;
-    return std::make_pair(std::sqrt(xDistance * xDistance + yDistance * yDistance) - radius, emissive);
-}
-
 std::set<IntersectPoint> Circle::intersect(const Line &line) {
     std::set<IntersectPoint> points;
     points.insert(IntersectPoint(line.point, 0.0, this->emissive));

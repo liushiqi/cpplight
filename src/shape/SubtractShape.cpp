@@ -11,13 +11,6 @@ SubtractShape::~SubtractShape() {
     delete shape2;
 }
 
-std::pair<double, double> SubtractShape::distance(const Point &point) const {
-    auto distance1 = shape1->distance(point), distance2 = shape2->distance(point);
-    auto distance = distance1;
-    distance.first = distance1.first > -distance2.first ? distance1.first : -distance2.first;
-    return distance;
-}
-
 std::set<IntersectPoint> SubtractShape::intersect(const Line &line) {
     // TODO
     return std::set<IntersectPoint>();

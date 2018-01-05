@@ -19,8 +19,6 @@ class Shape {
 
         virtual ~Shape() = default;
 
-        virtual std::pair<double, double> distance(const Point &point) const = 0;
-
         virtual std::set<IntersectPoint> intersect(const Line &line) = 0;
 
         double getEmissive() { return emissive; }
