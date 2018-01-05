@@ -3,6 +3,7 @@
 //
 
 #include <cmath>
+#include <set>
 #include "Circle.h"
 
 Circle::Circle(const Point &center, double radius, double emissive) : Shape(emissive), center(center), radius(radius) {}
@@ -18,22 +19,26 @@ std::pair<double, double> Circle::distance(const Point &point) const {
     return std::make_pair(std::sqrt(xDistance * xDistance + yDistance * yDistance) - radius, emissive);
 }
 
-std::vector<Point> Circle::intersect(const Line &line) {
-    std::vector<Point> points;
-    Vector centerToPoint = line.point - center;
-    double lengthCenterToPoint = centerToPoint.length();
-    double lengthDirection = line.direction.length();
-    double dot = centerToPoint * line.direction;
-    double delta = 4 * (std::pow(dot, 2) - std::pow(lengthDirection * lengthCenterToPoint, 2) +
-                        std::pow(lengthDirection * radius, 2));
+std::set<std::pair<Point, double>, Compare> Circle::intersect(const Line &line) {
+    std::set<std::pair<Point, double>, Compare> points;
+    points.insert(std::make_pair(line.point, 0));
+    Vector cenToPoi = line.point - center;
+    double lenCenToPoi = cenToPoi.length();
+    double lenDir = line.direction.length();
+    double dot = cenToPoi * line.direction;
+    double delta = 4 * (std::pow(dot, 2) - std::pow(lenDir * lenCenToPoi, 2) +
+                        std::pow(lenDir * radius, 2));
     if (delta > 0) {
-        double n = (std::sqrt(delta) - 2 * dot) / (2 * std::pow(lengthDirection, 2));
-        points.push_back(centerToPoint + center + line.direction * n);
-        n = (-std::sqrt(delta) - 2 * dot) / (2 * std::pow(lengthDirection, 2));
-        points.push_back(centerToPoint + center + line.direction * n);
+        double n = (std::sqrt(delta) - 2 * dot) / (2 * std::pow(lenDir, 2));
+        if (n > 0)
+            points.insert(std::make_pair(cenToPoi + center + line.direction * n, n * line.direction.length()));
+        n = (-std::sqrt(delta) - 2 * dot) / (2 * std::pow(lenDir, 2));
+        if (n > 0)
+            points.insert(std::make_pair(cenToPoi + center + line.direction * n, n * line.direction.length()));
     } else if (std::abs(delta) < 1e-6) {
-        double n = -dot / std::pow(lengthDirection, 2);
-        points.push_back(centerToPoint + line.direction * n);
+        double n = -dot / std::pow(lenDir, 2);
+        if (n > 0)
+            points.insert(std::make_pair(cenToPoi + line.direction * n, n * line.direction.length()));
     }
     return points;
 }

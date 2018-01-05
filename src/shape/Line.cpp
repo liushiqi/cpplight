@@ -6,4 +6,7 @@
 
 Line::Line(const Point &point, const Vector &direction) : point(point), direction(direction) {}
 
+Line::Line(const Point &point, double directionX, double directionY) : point(point),
+                                                                       direction(directionX, directionY) {}
+
 Line::~Line() = default;

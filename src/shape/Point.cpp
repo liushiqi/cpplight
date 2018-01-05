@@ -3,6 +3,7 @@
 //
 
 #include "Point.h"
+#include "Shape.h"
 
 Point::Point(double x, double y) : x(x), y(y) {}
 
@@ -19,4 +20,9 @@ void Point::setPosition(double x, double y) {
 
 Vector Point::operator-(const Point &point) const {
     return Vector(x - point.x, y - point.y);
+}
+
+bool Compare::operator()(const std::pair<Point, double> &points1,
+                         const std::pair<Point, double> &points2) {
+    return points1.second < points2.second;
 }

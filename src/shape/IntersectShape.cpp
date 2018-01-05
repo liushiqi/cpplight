@@ -18,7 +18,7 @@ std::pair<double, double> IntersectShape::distance(const Point &point) const {
     return distance;
 }
 
-std::vector<Point> IntersectShape::intersect(const Line &line) {
+std::set<std::pair<Point, double>, Compare> IntersectShape::intersect(const Line &line) {
     // TODO
-    return std::vector<Point>();
+    return std::set<std::pair<Point, double>, Compare>();
 }

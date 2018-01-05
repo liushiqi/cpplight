@@ -6,6 +6,7 @@
 #define CPPLIGHT_SHAPE_H
 
 #include <random>
+#include <set>
 #include "Point.h"
 #include "Line.h"
 
@@ -20,7 +21,11 @@ class Shape {
 
         virtual std::pair<double, double> distance(const Point &point) const = 0;
 
-        virtual std::vector<Point> intersect(const Line &line) = 0;
+        virtual std::set<std::pair<Point, double>, Compare> intersect(const Line &line) = 0;
+
+        double getEmissive() { return emissive; }
+
+        double setEmissive(double emissive) { this->emissive = emissive; }
 };
 
 #endif //CPPLIGHT_SHAPE_H

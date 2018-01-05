@@ -15,6 +15,8 @@ class Line {
 
         Line(const Point &point, const Vector &direction);
 
+        Line(const Point &point, double directionX, double directionY);
+
         virtual ~Line();
 };
 

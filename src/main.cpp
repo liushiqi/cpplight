@@ -8,7 +8,7 @@
 
 int main() {
     auto *scene = new Scene();
-    scene->add(new Rectangle(0.5, 0.5, 0.2, 0.1, 0.1 * M_PI, 2.0));
+    scene->add(new Circle(0.5, 0.5, 0.1, 2.0));
     scene->flush();
     scene->print("temp.png");
     delete scene;

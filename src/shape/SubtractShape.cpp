@@ -18,7 +18,7 @@ std::pair<double, double> SubtractShape::distance(const Point &point) const {
     return distance;
 }
 
-std::vector<Point> SubtractShape::intersect(const Line &line) {
+std::set<std::pair<Point, double>, Compare> SubtractShape::intersect(const Line &line) {
     // TODO
-    return std::vector<Point>();
+    return std::set<std::pair<Point, double>, Compare>();
 }

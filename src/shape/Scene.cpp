@@ -30,7 +30,7 @@ std::pair<double, double> Scene::distance(const Point &point) {
     return minDistance;
 }
 
-double Scene::trace(const Point &point, double degree) {
+double Scene::oldTrace(const Point &point, double degree) {
     double trace = 0.001, dx = std::cos(degree), dy = std::sin(degree);
     Point tracedPoint(point);
     for (int i = 0; i < MAX_TRACE_STEP && trace < MAX_TRACE_DISTANCE; ++i) {
@@ -42,6 +42,25 @@ double Scene::trace(const Point &point, double degree) {
         trace += pair.first;
     }
     return 0.0;
+}
+
+double Scene::trace(const Point &point, double degree) {
+    Line line(point, std::cos(degree), std::sin(degree));
+    std::set<std::pair<Point, double>, Compare> insertedPoints;
+    Shape *minimumShape = *shapes.begin();
+    for (auto shape : shapes) {
+        auto points = shape->intersect(line);
+        for (auto &pointMessage : points) {
+            if ((*(points.begin()++)).second > pointMessage.second)
+                minimumShape = shape;
+            insertedPoints.insert(pointMessage);
+        }
+    }
+    if (insertedPoints.size() == 1) {
+        return 0;
+    } else {
+        return minimumShape->getEmissive();
+    }
 }
 
 double Scene::sample(const Point &point) {

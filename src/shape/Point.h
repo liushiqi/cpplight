@@ -5,7 +5,16 @@
 #ifndef CPPLIGHT_POINT_H
 #define CPPLIGHT_POINT_H
 
+#include <utility>
+#include <set>
 #include "Vector.h"
+
+class Shape;
+
+struct Compare {
+    bool operator()(const std::pair<Point, double> &points1,
+                    const std::pair<Point, double> &points2);
+};
 
 class Point {
     public:

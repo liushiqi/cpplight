@@ -11,8 +11,8 @@
 
 class Scene {
     public:
-        static constexpr int width = 2048;
-        static constexpr int height = 2048;
+        static constexpr int width = 512;
+        static constexpr int height = 512;
         static constexpr int N = 64;
 
         static constexpr int MAX_TRACE_STEP = 64;
@@ -27,7 +27,9 @@ class Scene {
 
         std::pair<double, double> distance(const Point &point);
 
-        double trace(const Point &point, double degree);
+        double oldTrace(const Point &point, double degree);
+
+        double trace(const Point& point, double degree);
 
         double sample(const Point &point);
 
