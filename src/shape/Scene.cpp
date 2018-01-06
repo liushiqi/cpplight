@@ -7,7 +7,9 @@
 #include "../svpng.inc"
 #include "Scene.h"
 
-Scene::Scene() : distribution(0.0f, 1.0f) {}
+Scene::Scene(unsigned int width, unsigned int height) : distribution(0.0f, 1.0f), width(width), height(height) {
+    graph = new unsigned char[width * height * 3];
+}
 
 Scene::~Scene() {
     for (auto shape : shapes) {
@@ -54,11 +56,12 @@ double Scene::sample(const Point &point) {
 }
 
 void Scene::flush() {
+    int scaling = std::min(width, height);
     unsigned char *p = graph;
     Point point = Point(0.0f, 0.0f);
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x, p += 3) {
-            point.setPosition((double) x / width, (double) y / height);
+            point.setPosition((double) x / scaling, (double) y / scaling);
             p[0] = p[1] = p[2] = (unsigned char) std::min(sample(point) * 255.0, 255.0);
         }
     }
@@ -66,4 +69,11 @@ void Scene::flush() {
 
 void Scene::print(std::string filename) {
     svpng(fopen(filename.c_str(), "wb"), width, height, graph, 0);
+}
+
+void Scene::setSize(unsigned int width, unsigned int height) {
+    this->width = width;
+    this->height = height;
+    delete[] graph;
+    graph = new unsigned char[width * height * 3];
 }
