@@ -11,15 +11,12 @@
 
 class Scene {
     public:
-        static constexpr int width = 512;
-        static constexpr int height = 512;
         static constexpr int N = 64;
-
         static constexpr int MAX_TRACE_STEP = 64;
         static constexpr double MAX_TRACE_DISTANCE = 2.0;
         static constexpr double EPSILON = 1e-6;
 
-        Scene();
+        Scene(unsigned int width = 512, unsigned int height = 512);
 
         ~Scene();
 
@@ -33,11 +30,15 @@ class Scene {
 
         void print(std::string filename);
 
+        void setSize(unsigned int width, unsigned int height);
+
     private:
+        unsigned int height = 512;
+        unsigned int width = 512;
         std::vector<Shape *> shapes;
-        unsigned char graph[width * height * 3];
         std::default_random_engine engine;
         std::uniform_real_distribution<double> distribution;
+        unsigned char *graph;
 
 };
 

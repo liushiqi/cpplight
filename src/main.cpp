@@ -1,5 +1,5 @@
 //
-// Created by liu on 17-12-24.
+// Created by liu onchangeable.
 //
 
 #include "shape/Shape.h"
@@ -10,6 +10,9 @@ int main() {
     scene->add(new Circle(0.5, 0.5, 0.1, 2.0));
     scene->flush();
     scene->print("temp.png");
+    scene->setSize(1024, 512);
+    scene->flush();
+    scene->print("temp1.png");
     delete scene;
     return 0;
 }
