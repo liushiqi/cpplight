@@ -51,3 +51,7 @@ Vector &Vector::operator-=(const Vector &vector) {
 double Vector::length() const {
     return std::sqrt(x * x + y * y);
 }
+
+Vector Vector::normalize() {
+    return Vector(x / length(), y / length());
+}

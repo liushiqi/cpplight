@@ -23,7 +23,7 @@ class Shape {
 
         double getEmissive() { return emissive; }
 
-        double setEmissive(double emissive) { this->emissive = emissive; }
+        void setEmissive(double emissive) { this->emissive = emissive; }
 };
 
 #endif //CPPLIGHT_SHAPE_H

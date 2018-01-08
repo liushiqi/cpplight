@@ -7,7 +7,7 @@
 #include "../svpng.inc"
 #include "Scene.h"
 
-Scene::Scene(unsigned int width, unsigned int height) : distribution(0.0f, 1.0f), width(width), height(height) {
+Scene::Scene(unsigned int width, unsigned int height) : height(height), width(width), distribution(0.0f, 1.0f) {
     graph = new unsigned char[width * height * 3];
 }
 
@@ -15,6 +15,7 @@ Scene::~Scene() {
     for (auto shape : shapes) {
         delete shape;
     }
+    delete[] graph;
 }
 
 void Scene::add(Shape *shape) {
@@ -64,8 +65,8 @@ void Scene::print(std::string filename) {
 }
 
 void Scene::setSize(unsigned int width, unsigned int height) {
+    delete[] graph;
     this->width = width;
     this->height = height;
-    delete[] graph;
     graph = new unsigned char[width * height * 3];
 }

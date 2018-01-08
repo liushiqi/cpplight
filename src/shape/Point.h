@@ -25,6 +25,14 @@ class Point {
 
         void setPosition(double x, double y);
 
+        Point operator+(const Vector &vector) const;
+
+        Point &operator+=(const Vector &vector);
+
+        Point operator-(const Vector &vector) const;
+
+        Point &operator-=(const Vector &vector);
+
         Vector operator-(const Point &point) const;
 };
 

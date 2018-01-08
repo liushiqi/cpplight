@@ -34,6 +34,8 @@ class Vector {
         Vector &operator-=(const Vector &vector);
 
         double length() const;
+
+        Vector normalize();
 };
 
 #endif //CPPLIGHT_VECTOR_H

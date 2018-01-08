@@ -3,6 +3,7 @@
 //
 
 #include "Rectangle.h"
+#include "Scene.h"
 
 Rectangle::Rectangle(const Point &center, const Vector &halfWidth, const Vector &halfHeight,
                      double emissive) : Shape(emissive), center(center), halfWidthVector(halfWidth),
@@ -20,6 +21,46 @@ Rectangle::Rectangle(double centerX, double centerY, double width, double height
 Rectangle::~Rectangle() = default;
 
 std::set<IntersectPoint> Rectangle::intersect(const Line &line) {
-    // TODO
-    return std::set<IntersectPoint>();
+
+    std::set<IntersectPoint> intersect = std::set<IntersectPoint>();
+    intersect.insert(IntersectPoint(line.point, 0.0, this->emissive));
+    Point leftDown = center - halfWidthVector - halfHeightVector;
+    Vector lineToLD = leftDown - line.point;
+    double delta = line.direction.x * halfWidthVector.y - halfWidthVector.x * line.direction.y;
+    if (delta != 0) {
+        double t1 = (lineToLD.x * line.direction.y - lineToLD.y * line.direction.x) / delta;
+        double t2 = (lineToLD.x * halfWidthVector.y - lineToLD.y * halfWidthVector.x) / delta;
+        if (t1 >= 0 && t1 < 2 + Scene::EPSILON && t2 > 0)
+            intersect.insert(IntersectPoint(line.point + line.direction * t2,
+                                            line.direction.length() * t2, this->emissive));
+    }
+    delta = line.direction.x * halfHeightVector.y - halfHeightVector.x * line.direction.y;
+    if (delta != 0) {
+        double t1 = (lineToLD.x * line.direction.y - lineToLD.y * line.direction.x) / delta;
+        double t2 = (lineToLD.x * halfHeightVector.y - lineToLD.y * halfHeightVector.x) / delta;
+        if (t1 > 0 && t1 <= 2 + Scene::EPSILON && t2 > 0)
+            intersect.insert(IntersectPoint(line.point + line.direction * t2,
+                                            line.direction.length() * t2, this->emissive));
+    }
+    Point leftUp = leftDown + halfHeightVector * 2;
+    Vector lineToLU = leftUp - line.point;
+    delta = line.direction.x * halfWidthVector.y - halfWidthVector.x * line.direction.y;
+    if (delta != 0) {
+        double t1 = (lineToLU.x * line.direction.y - lineToLU.y * line.direction.x) / delta;
+        double t2 = (lineToLU.x * halfWidthVector.y - lineToLU.y * halfWidthVector.x) / delta;
+        if (t1 > 0 && t1 <= 2 + Scene::EPSILON && t2 > 0)
+            intersect.insert(IntersectPoint(line.point + line.direction * t2,
+                                            line.direction.length() * t2, this->emissive));
+    }
+    Point rightDown = leftDown + halfWidthVector * 2;
+    Vector lineToRD = rightDown - line.point;
+    delta = line.direction.x * halfHeightVector.y - halfHeightVector.x * line.direction.y;
+    if (delta != 0) {
+        double t1 = (lineToRD.x * line.direction.y - lineToRD.y * line.direction.x) / delta;
+        double t2 = (lineToRD.x * halfHeightVector.y - lineToRD.y * halfHeightVector.x) / delta;
+        if (t1 >= 0 && t1 < 2 + Scene::EPSILON && t2 > 0)
+            intersect.insert(IntersectPoint(line.point + line.direction * t2,
+                                            line.direction.length() * t2, this->emissive));
+    }
+    return intersect;
 }

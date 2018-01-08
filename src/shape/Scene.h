@@ -11,10 +11,8 @@
 
 class Scene {
     public:
-        static constexpr int N = 64;
-        static constexpr int MAX_TRACE_STEP = 64;
-        static constexpr double MAX_TRACE_DISTANCE = 2.0;
-        static constexpr double EPSILON = 1e-6;
+        static constexpr int N = 256;
+        static constexpr double EPSILON = 1e-12;
 
         Scene(unsigned int width = 512, unsigned int height = 512);
 

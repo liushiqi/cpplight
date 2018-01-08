@@ -17,6 +17,26 @@ void Point::setPosition(double x, double y) {
     this->y = y;
 }
 
+Point Point::operator+(const Vector &vector) const {
+    return Point(x + vector.x, y + vector.y);
+}
+
+Point &Point::operator+=(const Vector &vector) {
+    x += vector.x;
+    y += vector.y;
+    return *this;
+}
+
+Point Point::operator-(const Vector &vector) const {
+    return Point(x - vector.x, y - vector.y);
+}
+
+Point &Point::operator-=(const Vector &vector) {
+    x -= vector.x;
+    y -= vector.y;
+    return *this;
+}
+
 Vector Point::operator-(const Point &point) const {
     return Vector(x - point.x, y - point.y);
 }
