@@ -13,6 +13,9 @@ int main() {
     scene->add(circle);
     scene->flush();
     scene->print("temp.png");
+    scene->setSize(512, 768);
+    scene->flush();
+    scene->print("temp1.png");
     delete circle;
     delete halfSpace;
     delete scene;
