@@ -59,7 +59,7 @@ void Scene::flush() {
     Point point = Point(0.0f, 0.0f);
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x, p += 3) {
-            point.setPosition((double) x / scaling, height / scaling - (double) y / scaling);
+            point.setPosition((double) x / scaling, (double) height / scaling - (double) y / scaling);
             p[0] = p[1] = p[2] = (unsigned char) std::min(sample(point) * 255.0, 255.0);
         }
     }

@@ -12,7 +12,7 @@ int main() {
     scene->add(rectangle);
     scene->flush();
     scene->print("temp.png");
-    scene->setSize(512, 1024);
+    scene->setSize(512, 768);
     scene->flush();
     scene->print("temp1.png");
     delete rectangle;
