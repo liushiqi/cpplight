@@ -24,6 +24,10 @@ class Shape {
         double getEmissive() { return emissive; }
 
         void setEmissive(double emissive) { this->emissive = emissive; }
+
+        bool operator==(Shape &another);
+
+        virtual long hashCode() const = 0;
 };
 
 #endif //CPPLIGHT_SHAPE_H

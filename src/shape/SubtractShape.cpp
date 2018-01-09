@@ -15,3 +15,7 @@ std::set<IntersectPoint> SubtractShape::intersect(const Line &line) {
     // TODO
     return std::set<IntersectPoint>();
 }
+
+long SubtractShape::hashCode() const {
+    return shape1->hashCode() + shape2->hashCode() * 10000;
+}

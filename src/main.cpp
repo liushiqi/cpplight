@@ -4,17 +4,18 @@
 
 #include "shape/Shape.h"
 #include "shape/Scene.h"
-#include "shape/Rectangle.h"
+#include "shape/HalfSpace.h"
 
 int main() {
+    auto *halfSpace = new HalfSpace(0.5, 0.5, 0.0, 0.1, 1.0);
     auto *scene = new Scene();
-    scene->add(new Circle(0.5, 0.5, 0.1, 2.0));
-    scene->add(new Rectangle(0.8, 0.2, 0.1, 0.1, 0.1 * M_PI, 2.0));
+    scene->add(halfSpace);
     scene->flush();
     scene->print("temp.png");
-    /*scene->setSize(1024, 512);
+    scene->remove(halfSpace);
     scene->flush();
-    scene->print("temp1.png");*/
+    scene->print("temp1.png");
+    delete halfSpace;
     delete scene;
     return 0;
 }

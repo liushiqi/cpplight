@@ -15,3 +15,7 @@ std::set<IntersectPoint> IntersectShape::intersect(const Line &line) {
     // TODO
     return std::set<IntersectPoint>();
 }
+
+long IntersectShape::hashCode() const {
+    return shape1->hashCode() * 100 + shape2->hashCode() * 100;
+}

@@ -21,7 +21,6 @@ Rectangle::Rectangle(double centerX, double centerY, double width, double height
 Rectangle::~Rectangle() = default;
 
 std::set<IntersectPoint> Rectangle::intersect(const Line &line) {
-
     std::set<IntersectPoint> intersect = std::set<IntersectPoint>();
     intersect.insert(IntersectPoint(line.point, 0.0, this->emissive));
     Point leftDown = center - halfWidthVector - halfHeightVector;
@@ -63,4 +62,9 @@ std::set<IntersectPoint> Rectangle::intersect(const Line &line) {
                                             line.direction.length() * t2, this->emissive));
     }
     return intersect;
+}
+
+long Rectangle::hashCode() const {
+    return static_cast<long>(center.x + center.y * 10 + halfWidthVector.x * 100 + halfWidthVector.y * 1000 +
+                             halfHeightVector.x * 10000 + halfHeightVector.y * 100000 + emissive * 1000000);
 }

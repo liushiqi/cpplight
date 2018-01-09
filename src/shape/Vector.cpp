@@ -30,6 +30,20 @@ Vector operator*(double scaleRate, const Vector &vector) {
     return Vector(vector.x * scaleRate, vector.y * scaleRate);
 }
 
+Vector Vector::operator/(double scaleRate) const {
+    return Vector(x * scaleRate, y * scaleRate);
+}
+
+Vector &Vector::operator/=(double scaleRate) {
+    x /= scaleRate;
+    y /= scaleRate;
+    return *this;
+}
+
+Vector operator/(double scaleRate, const Vector &vector) {
+    return Vector(vector.x / scaleRate, vector.y / scaleRate);
+}
+
 Vector Vector::operator+(const Vector &vector) const {
     return Vector(x + vector.x, y + vector.y);
 }

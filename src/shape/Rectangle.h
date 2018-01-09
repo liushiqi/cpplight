@@ -22,6 +22,8 @@ class Rectangle : virtual public Shape {
         ~Rectangle() override;
 
         std::set<IntersectPoint> intersect(const Line &line) override;
+
+        long hashCode() const override;
 };
 
 #endif //CPPLIGHT_RECTANGLE_H

@@ -5,3 +5,7 @@
 #include "Shape.h"
 
 Shape::Shape(double emissive) : emissive(emissive) {}
+
+bool Shape::operator==(Shape &another) {
+    return this->hashCode() == another.hashCode();
+}

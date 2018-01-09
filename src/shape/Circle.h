@@ -20,6 +20,8 @@ class Circle : virtual public Shape {
         ~Circle() override;
 
         std::set<IntersectPoint> intersect(const Line &line) override;
+
+        long hashCode() const override;
 };
 
 #endif //CPPLIGHT_CIRCLE_H

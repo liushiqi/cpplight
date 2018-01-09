@@ -20,6 +20,8 @@ class Scene {
 
         void add(Shape *shape);
 
+        Shape *remove(Shape *shape);
+
         double trace(const Point& point, double degree);
 
         double sample(const Point &point);

@@ -7,6 +7,21 @@
 
 #include "Shape.h"
 
+/**
+ * The shape is a line which contains the point <b>base</b>,<br>
+ * and has a normal vector <b>normal</b>, along with a field<br>
+ * aside the line defined by the direction of vector <b>normal</b>.<p>
+ *
+ * Using this class for a directional light is not suggested,<br>
+ * you'd better use a big <b>Rectangle</b> instead.<p>
+ *
+ * If the class will be used as the sourceof light ,the <b>emissive</b><br>
+ * of <b>HalfSpace</b> should be no more than 2.0, otherwise<br>
+ * the scene will be too bright to see it.
+ *
+ * @author liushiqi
+ * @see Shape
+ */
 class HalfSpace : virtual public Shape {
     private:
         Point base;
@@ -24,6 +39,8 @@ class HalfSpace : virtual public Shape {
         ~HalfSpace() override;
 
         std::set<IntersectPoint> intersect(const Line &line) override;
+
+        long hashCode() const override;
 };
 
 #endif //CPPLIGHT_HALFSPACE_H

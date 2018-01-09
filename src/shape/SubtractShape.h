@@ -18,6 +18,8 @@ class SubtractShape : virtual public Shape {
         ~SubtractShape() override;
 
         std::set<IntersectPoint> intersect(const Line &line) override;
+
+        long hashCode() const override;
 };
 
 #endif //CPPLIGHT_SUBSTRACTSHAPE_H

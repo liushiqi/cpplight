@@ -15,3 +15,7 @@ std::set<IntersectPoint> UnionShape::intersect(const Line &line) {
     // TODO
     return std::set<IntersectPoint>();
 }
+
+long UnionShape::hashCode() const {
+    return shape1->hashCode() + shape2->hashCode() * 1000000;
+}

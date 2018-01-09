@@ -8,6 +8,7 @@
 #include <boost/test/unit_test.hpp>
 #include "../src/shape/Circle.h"
 #include "../src/shape/Rectangle.h"
+#include "../src/shape/HalfSpace.h"
 
 using namespace boost;
 using namespace boost::unit_test;
@@ -32,6 +33,20 @@ BOOST_AUTO_TEST_SUITE(test_cases)
         Rectangle rectangle = Rectangle(0.5, 0.5, 0.1, 0.1, 0.0, 2.0);
         Line line = Line(Point(0.5, 1.0), std::sqrt(2) / 2, std::sqrt(2) / 2);
         auto list = rectangle.intersect(line);
+        BOOST_CHECK_EQUAL(list.size(), 1);
+    }
+
+    BOOST_AUTO_TEST_CASE(halfspace) {
+        HalfSpace space = HalfSpace(0.5, 0.5, 0.1, 0.0, 2.0);
+        Line line = Line(Point(0.5, 0.0), 0.0, 1.0);
+        auto list = space.intersect(line);
+        BOOST_CHECK_EQUAL((++list.begin())->x, 0.5);
+    }
+
+    BOOST_AUTO_TEST_CASE(halfspace_no_insersect) {
+        HalfSpace space = HalfSpace(0.5, 0.5, 0.0, 0.1, 2.0);
+        Line line = Line(Point(0.0, 0.0), 0.5, 0.0);
+        auto list = space.intersect(line);
         BOOST_CHECK_EQUAL(list.size(), 1);
     }
 

@@ -15,8 +15,8 @@ Circle::Circle(double centerX, double centerY, double radius, double emissive) :
 Circle::~Circle() = default;
 
 std::set<IntersectPoint> Circle::intersect(const Line &line) {
-    std::set<IntersectPoint> points;
-    points.insert(IntersectPoint(line.point, 0.0, this->emissive));
+    std::set<IntersectPoint> intersect;
+    intersect.insert(IntersectPoint(line.point, 0.0, this->emissive));
     Vector cenToPoi = line.point - center;
     double lenCenToPoi = cenToPoi.length();
     double lenDir = line.direction.length();
@@ -26,14 +26,18 @@ std::set<IntersectPoint> Circle::intersect(const Line &line) {
     if (delta > 0) {
         double n = (std::sqrt(delta) - 2 * dot) / (2 * std::pow(lenDir, 2));
         if (n > 0)
-            points.insert(IntersectPoint(cenToPoi + center + line.direction * n, n * lenDir, this->emissive));
+            intersect.insert(IntersectPoint(cenToPoi + center + line.direction * n, n * lenDir, this->emissive));
         n = (-std::sqrt(delta) - 2 * dot) / (2 * std::pow(lenDir, 2));
         if (n > 0)
-            points.insert(IntersectPoint(cenToPoi + center + line.direction * n, n * lenDir, this->emissive));
+            intersect.insert(IntersectPoint(cenToPoi + center + line.direction * n, n * lenDir, this->emissive));
     } else if (std::abs(delta) < 1e-6) {
         double n = -dot / std::pow(lenDir, 2);
         if (n > 0)
-            points.insert(IntersectPoint(cenToPoi + line.direction * n, n * lenDir, this->emissive));
+            intersect.insert(IntersectPoint(cenToPoi + line.direction * n, n * lenDir, this->emissive));
     }
-    return points;
+    return intersect;
+}
+
+long Circle::hashCode() const {
+    return static_cast<long>(center.x + center.y * 10 + radius * 100 + emissive * 1000);
 }

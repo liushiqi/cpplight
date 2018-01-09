@@ -18,6 +18,8 @@ class IntersectShape : virtual public Shape {
         ~IntersectShape() override;
 
         std::set<IntersectPoint> intersect(const Line &line) override;
+
+        long hashCode() const override;
 };
 
 #endif //CPPLIGHT_INTERSECTSHAPE_H

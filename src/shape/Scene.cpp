@@ -12,14 +12,20 @@ Scene::Scene(unsigned int width, unsigned int height) : height(height), width(wi
 }
 
 Scene::~Scene() {
-    for (auto shape : shapes) {
-        delete shape;
-    }
     delete[] graph;
 }
 
 void Scene::add(Shape *shape) {
     shapes.push_back(shape);
+}
+
+Shape *Scene::remove(Shape *shape) {
+    for (auto sha = shapes.begin(); sha != shapes.end();) {
+        if ((*sha) == shape) {
+            shapes.erase(sha);
+        } else { ++sha; }
+    }
+    return shape;
 }
 
 double Scene::trace(const Point &point, double degree) {
@@ -29,8 +35,8 @@ double Scene::trace(const Point &point, double degree) {
     for (auto shape : shapes) {
         auto points = shape->intersect(line);
         if (points.size() > 1) {
-            auto poi = *(points.begin()++);
-            if (poi.distance < minDistance) {
+            auto poi = *(++points.begin());
+            if (poi.distance <= minDistance) {
                 emissive = poi.emissive;
                 minDistance = poi.distance;
             }

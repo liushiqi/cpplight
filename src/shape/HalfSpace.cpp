@@ -19,6 +19,30 @@ HalfSpace::HalfSpace(double baseX, double baseY, double normalX, double normalY,
 HalfSpace::~HalfSpace() = default;
 
 std::set<IntersectPoint> HalfSpace::intersect(const Line &line) {
-    // TODO
-    return std::set<IntersectPoint>();
+    std::set<IntersectPoint> intersect = std::set<IntersectPoint>();
+    intersect.insert(IntersectPoint(line.point, 0.0, this->emissive));
+    Vector pointToBase = base - line.point;
+    if (pointToBase * normal == 0) {
+        intersect.insert(IntersectPoint(std::numeric_limits<double>::max(), std::numeric_limits<double>::max(),
+                                        std::numeric_limits<double>::max(), this->emissive));
+    } else if (line.direction * normal == 0) {
+        if (pointToBase * normal <= 0)
+            intersect.insert(IntersectPoint(std::numeric_limits<double>::max(), std::numeric_limits<double>::max(),
+                                            std::numeric_limits<double>::max(), this->emissive));
+    } else {
+        double proportion = pointToBase * normal / (line.direction * normal);
+        if (proportion >= 0) {
+            intersect.insert(IntersectPoint(line.point + line.direction * proportion,
+                                            line.direction.length() * proportion, this->emissive));
+        } else {
+            if (pointToBase * normal < 0)
+                intersect.insert(IntersectPoint(std::numeric_limits<double>::max(), std::numeric_limits<double>::max(),
+                                                std::numeric_limits<double>::max(), this->emissive));
+        }
+    }
+    return intersect;
+}
+
+long HalfSpace::hashCode() const {
+    return static_cast<long>(base.x + base.y * 10 + normal.x * 100 + normal.y * 1000 + emissive * 10000);
 }
