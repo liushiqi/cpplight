@@ -17,7 +17,7 @@ class IntersectShape : virtual public Shape {
 
         ~IntersectShape() override;
 
-        std::set<IntersectPoint> intersect(const Line &line) override;
+        std::set<IntersectPoint> intersect(const Line &line) const override;
 
         long hashCode() const override;
 };

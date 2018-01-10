@@ -14,7 +14,7 @@ Circle::Circle(double centerX, double centerY, double radius, double emissive) :
 
 Circle::~Circle() = default;
 
-std::set<IntersectPoint> Circle::intersect(const Line &line) {
+std::set<IntersectPoint> Circle::intersect(const Line &line) const {
     std::set<IntersectPoint> intersect;
     intersect.insert(IntersectPoint(line.point, 0.0, this->emissive));
     Vector cenToPoi = line.point - center;

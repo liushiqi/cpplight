@@ -17,7 +17,7 @@ class UnionShape : virtual public Shape {
 
         ~UnionShape() override;
 
-        std::set<IntersectPoint> intersect(const Line &line) override;
+        std::set<IntersectPoint> intersect(const Line &line) const override;
 
         long hashCode() const override;
 };

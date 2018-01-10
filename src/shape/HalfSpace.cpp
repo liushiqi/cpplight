@@ -18,7 +18,7 @@ HalfSpace::HalfSpace(double baseX, double baseY, double normalX, double normalY,
 
 HalfSpace::~HalfSpace() = default;
 
-std::set<IntersectPoint> HalfSpace::intersect(const Line &line) {
+std::set<IntersectPoint> HalfSpace::intersect(const Line &line) const {
     std::set<IntersectPoint> intersect = std::set<IntersectPoint>();
     intersect.insert(IntersectPoint(line.point, 0.0, this->emissive));
     Vector pointToBase = base - line.point;

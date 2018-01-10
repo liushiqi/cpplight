@@ -11,11 +11,13 @@ IntersectShape::~IntersectShape() {
     delete shape2;
 }
 
-std::set<IntersectPoint> IntersectShape::intersect(const Line &line) {
+std::set<IntersectPoint> IntersectShape::intersect(const Line &line) const {
+    // auto intersect1 = shape1->intersect(line);
+    // auto intersect2 = shape2->intersect(line);
     // TODO
     return std::set<IntersectPoint>();
 }
 
 long IntersectShape::hashCode() const {
-    return shape1->hashCode() * 100 + shape2->hashCode() * 100;
+    return shape1->hashCode() + shape2->hashCode() * 10;
 }

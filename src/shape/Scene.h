@@ -7,7 +7,6 @@
 
 #include <vector>
 #include "Shape.h"
-#include "Circle.h"
 
 class Scene {
     public:
@@ -31,6 +30,10 @@ class Scene {
         void print(std::string filename);
 
         void setSize(unsigned int width, unsigned int height);
+
+#ifdef HAVE_OPENCV
+        void display(const std::string &windowName, int waitTime = 0);
+#endif
 
     private:
         unsigned int height = 512;

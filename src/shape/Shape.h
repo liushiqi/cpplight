@@ -19,7 +19,7 @@ class Shape {
 
         virtual ~Shape() = default;
 
-        virtual std::set<IntersectPoint> intersect(const Line &line) = 0;
+        virtual std::set<IntersectPoint> intersect(const Line &line) const = 0;
 
         double getEmissive() { return emissive; }
 

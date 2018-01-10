@@ -20,7 +20,7 @@ Rectangle::Rectangle(double centerX, double centerY, double width, double height
 
 Rectangle::~Rectangle() = default;
 
-std::set<IntersectPoint> Rectangle::intersect(const Line &line) {
+std::set<IntersectPoint> Rectangle::intersect(const Line &line) const {
     std::set<IntersectPoint> intersect = std::set<IntersectPoint>();
     intersect.insert(IntersectPoint(line.point, 0.0, this->emissive));
     Point leftDown = center - halfWidthVector - halfHeightVector;

@@ -1,8 +1,9 @@
 //
-// Created by liu onchangeable.
+// Created by liu on 18-1-10.
 //
 
-#include "shape/Shape.h"
+#include <ml.h>
+#include <highgui.h>
 #include "shape/Scene.h"
 #include "shape/HalfSpace.h"
 #include "shape/Circle.h"
@@ -13,10 +14,10 @@ int main() {
     auto *scene = new Scene();
     scene->add(circle);
     scene->flush();
-    scene->print("temp.png");
+    scene->display("temp", 1000);
     scene->setSize(512, 768);
     scene->flush();
-    scene->print("temp1.png");
+    scene->display("temp");
     delete circle;
     delete halfSpace;
     delete scene;

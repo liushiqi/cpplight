@@ -11,11 +11,11 @@ SubtractShape::~SubtractShape() {
     delete shape2;
 }
 
-std::set<IntersectPoint> SubtractShape::intersect(const Line &line) {
+std::set<IntersectPoint> SubtractShape::intersect(const Line &line) const {
     // TODO
     return std::set<IntersectPoint>();
 }
 
 long SubtractShape::hashCode() const {
-    return shape1->hashCode() + shape2->hashCode() * 10000;
+    return shape1->hashCode() + shape2->hashCode() * 100;
 }

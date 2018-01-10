@@ -11,11 +11,11 @@ UnionShape::~UnionShape() {
     delete shape2;
 }
 
-std::set<IntersectPoint> UnionShape::intersect(const Line &line) {
+std::set<IntersectPoint> UnionShape::intersect(const Line &line) const {
     // TODO
     return std::set<IntersectPoint>();
 }
 
 long UnionShape::hashCode() const {
-    return shape1->hashCode() + shape2->hashCode() * 1000000;
+    return shape1->hashCode() + shape2->hashCode() * 1000;
 }

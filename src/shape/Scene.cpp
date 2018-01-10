@@ -7,6 +7,13 @@
 #include "../svpng.inc"
 #include "Scene.h"
 
+#ifdef HAVE_OPENCV
+
+#include <ml.h>
+#include <highgui.h>
+
+#endif
+
 Scene::Scene(unsigned int width, unsigned int height) : height(height), width(width), distribution(0.0f, 1.0f) {
     graph = new unsigned char[width * height * 3];
 }
@@ -69,6 +76,17 @@ void Scene::flush() {
 void Scene::print(std::string filename) {
     svpng(fopen(filename.c_str(), "wb"), width, height, graph, 0);
 }
+
+#ifdef HAVE_OPENCV
+
+void Scene::display(const std::string &windowName, int waitTime) {
+    cv::Mat temp1 = cv::Mat(height, width, CV_8UC3, graph);
+    cv::namedWindow(windowName);
+    cv::imshow(windowName, temp1);
+    cv::waitKey(waitTime);
+}
+
+#endif
 
 void Scene::setSize(unsigned int width, unsigned int height) {
     delete[] graph;
