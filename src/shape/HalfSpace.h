@@ -41,6 +41,8 @@ class HalfSpace : virtual public Shape {
         std::set<IntersectPoint> intersect(const Line &line) const override;
 
         long hashCode() const override;
+
+        bool isInside(const Point &point) const override;
 };
 
 #endif //CPPLIGHT_HALFSPACE_H

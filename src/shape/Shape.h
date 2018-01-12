@@ -21,13 +21,15 @@ class Shape {
 
         virtual std::set<IntersectPoint> intersect(const Line &line) const = 0;
 
-        double getEmissive() { return emissive; }
+        double getEmissive() const { return emissive; }
 
         void setEmissive(double emissive) { this->emissive = emissive; }
 
         bool operator==(Shape &another);
 
         virtual long hashCode() const = 0;
+
+        virtual bool isInside(const Point &point) const = 0;
 };
 
 #endif //CPPLIGHT_SHAPE_H

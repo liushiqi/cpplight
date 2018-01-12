@@ -46,3 +46,7 @@ std::set<IntersectPoint> HalfSpace::intersect(const Line &line) const {
 long HalfSpace::hashCode() const {
     return static_cast<long>(base.x + base.y * 10 + normal.x * 100 + normal.y * 1000 + emissive * 10000);
 }
+
+bool HalfSpace::isInside(const Point &point) const {
+    return (point - base) * normal >= 0;
+}

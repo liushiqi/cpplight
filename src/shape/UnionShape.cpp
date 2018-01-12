@@ -19,3 +19,7 @@ std::set<IntersectPoint> UnionShape::intersect(const Line &line) const {
 long UnionShape::hashCode() const {
     return shape1->hashCode() + shape2->hashCode() * 1000;
 }
+
+bool UnionShape::isInside(const Point &point) const {
+    return shape1->isInside(point) || shape2->isInside(point);
+}

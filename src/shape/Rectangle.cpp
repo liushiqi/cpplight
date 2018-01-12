@@ -68,3 +68,8 @@ long Rectangle::hashCode() const {
     return static_cast<long>(center.x + center.y * 10 + halfWidthVector.x * 100 + halfWidthVector.y * 1000 +
                              halfHeightVector.x * 10000 + halfHeightVector.y * 100000 + emissive * 1000000);
 }
+
+bool Rectangle::isInside(const Point &point) const {
+    return std::abs((point - center) * halfWidthVector) <= halfWidthVector.length()
+           && std::abs((point - center) * halfHeightVector) <= halfHeightVector.length();
+}

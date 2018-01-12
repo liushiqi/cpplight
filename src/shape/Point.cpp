@@ -41,6 +41,26 @@ Vector Point::operator-(const Point &point) const {
     return Vector(x - point.x, y - point.y);
 }
 
+Point Point::operator/(const double proportion) const {
+    return Point(x / proportion, y / proportion);
+}
+
+Point &Point::operator/=(const double proportion) {
+    x /= proportion;
+    y /= proportion;
+    return *this;
+}
+
+Point Point::operator/(const Vector &proportion) const {
+    return Point(x / proportion.x, y / proportion.y);
+}
+
+Point &Point::operator/=(const Vector &proportion) {
+    x /= proportion.x;
+    y /= proportion.y;
+    return *this;
+}
+
 IntersectPoint::IntersectPoint(double x, double y, double distance, double emissive) : Point(x, y), distance(distance),
                                                                                        emissive(emissive) {}
 

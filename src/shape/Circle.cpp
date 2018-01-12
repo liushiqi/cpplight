@@ -41,3 +41,7 @@ std::set<IntersectPoint> Circle::intersect(const Line &line) const {
 long Circle::hashCode() const {
     return static_cast<long>(center.x + center.y * 10 + radius * 100 + emissive * 1000);
 }
+
+bool Circle::isInside(const Point &point) const {
+    return (point - center).length() <= radius;
+}

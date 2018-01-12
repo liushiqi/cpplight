@@ -19,3 +19,7 @@ std::set<IntersectPoint> SubtractShape::intersect(const Line &line) const {
 long SubtractShape::hashCode() const {
     return shape1->hashCode() + shape2->hashCode() * 100;
 }
+
+bool SubtractShape::isInside(const Point &point) const {
+    return shape1->isInside(point) && !shape2->isInside(point);
+}
