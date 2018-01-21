@@ -6,19 +6,18 @@
 #include "shape/Scene.h"
 #include "shape/HalfSpace.h"
 #include "shape/Circle.h"
-#include "shape/IntersectShape.h"
+#include "shape/UnionShape.h"
 
 int main() {
-    auto *halfSpace = new HalfSpace(0.5, 0.5, 0.0, 0.1, 2.0);
+    auto *halfSpace = new HalfSpace(0.5, 0.5, 0.0, 0.1, 0.8);
     auto *circle = new Circle(0.5, 0.5, 0.1, 2.0);
-    auto *intersect = new IntersectShape(halfSpace, circle);
+    auto *intersect = new UnionShape(halfSpace, circle);
     auto *scene = new Scene();
     scene->add(intersect);
+    scene->setSize(16, 16);
     scene->flush();
     scene->print("temp.png");
-    scene->setSize(512, 768);
-    scene->flush();
-    scene->print("temp1.png");
+    delete intersect;
     delete circle;
     delete halfSpace;
     delete scene;

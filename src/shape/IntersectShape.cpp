@@ -6,10 +6,7 @@
 
 IntersectShape::IntersectShape(const Shape *shape1, const Shape *shape2) : Shape(0.0), shape1(shape1), shape2(shape2) {}
 
-IntersectShape::~IntersectShape() {
-    delete shape1;
-    delete shape2;
-}
+IntersectShape::~IntersectShape() = default;
 
 std::set<IntersectPoint> IntersectShape::intersect(const Line &line) const {
     auto intersect1 = shape1->intersect(line);
@@ -24,48 +21,50 @@ std::set<IntersectPoint> IntersectShape::intersect(const Line &line) const {
                 intersect.insert(point);
             }
         }
-    } else if (intersect2.size() == 1) {
-        for (auto &&point : intersect1) {
-            if (isInside(point)) {
-                intersect.insert(point);
+    } else {
+        if (intersect2.size() == 1) {
+            for (auto &&point : intersect1) {
+                if (isInside(point)) {
+                    intersect.insert(point);
+                }
             }
-        }
-    } else
-        for (auto point1 = ++intersect1.begin(), point2 = ++intersect2.begin();;) {
-            if (point1 == intersect1.end() && point2 == intersect2.end())
-                break;
-            else if (point1 == intersect1.end()) {
-                if (isInside(*point2 / 2 + currentPoint / 2)) {
-                    intersect.insert(currentPoint);
-                    intersect.insert(*point2);
-                }
-                currentPoint = *point2;
-                point2++;
-            } else if (point2 == intersect2.end()) {
-                if (isInside(*point1)) {
-                    intersect.insert(currentPoint);
-                    intersect.insert(*point1);
-                }
-                currentPoint = *point1;
-                point1++;
-            } else {
-                if (*point1 < *point2) {
-                    if (isInside(*point1 / 2 + currentPoint / 2)) {
-                        intersect.insert(currentPoint);
-                        intersect.insert(*point1);
-                    }
-                    currentPoint = *point1;
-                    point1++;
-                } else {
+        } else
+            for (auto point1 = ++intersect1.begin(), point2 = ++intersect2.begin();;) {
+                if (point1 == intersect1.end() && point2 == intersect2.end())
+                    break;
+                else if (point1 == intersect1.end()) {
                     if (isInside(*point2 / 2 + currentPoint / 2)) {
                         intersect.insert(currentPoint);
                         intersect.insert(*point2);
                     }
                     currentPoint = *point2;
                     point2++;
+                } else if (point2 == intersect2.end()) {
+                    if (isInside(*point1)) {
+                        intersect.insert(currentPoint);
+                        intersect.insert(*point1);
+                    }
+                    currentPoint = *point1;
+                    point1++;
+                } else {
+                    if (*point1 < *point2) {
+                        if (isInside(*point1 / 2 + currentPoint / 2)) {
+                            intersect.insert(currentPoint);
+                            intersect.insert(*point1);
+                        }
+                        currentPoint = *point1;
+                        point1++;
+                    } else {
+                        if (isInside(*point2 / 2 + currentPoint / 2)) {
+                            intersect.insert(currentPoint);
+                            intersect.insert(*point2);
+                        }
+                        currentPoint = *point2;
+                        point2++;
+                    }
                 }
             }
-        }
+    }
     return intersect;
 }
 
