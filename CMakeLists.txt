@@ -25,8 +25,8 @@ set(SOURCE_FILES
         src/shape/SubtractShape.h
         src/shape/Rectangle.cpp
         src/shape/Rectangle.h
-        src/shape/Line.cpp
-        src/shape/Line.h)
+        src/shape/Radial.cpp
+        src/shape/Radial.h)
 add_executable(cpplight ${SOURCE_FILES} src/main.cpp)
 
 set(Boost_USE_STATIC_LIBS OFF)

@@ -4,7 +4,7 @@
 
 #include "Shape.h"
 
-Shape::Shape(double emissive) : emissive(emissive) {}
+Shape::Shape(double luminance) : luminance(luminance) {}
 
 bool Shape::operator==(Shape &another) {
     return this->hashCode() == another.hashCode();

@@ -14,7 +14,6 @@ int main() {
     auto *intersect = new UnionShape(halfSpace, circle);
     auto *scene = new Scene();
     scene->add(intersect);
-    scene->setSize(16, 16);
     scene->flush();
     scene->print("temp.png");
     delete intersect;

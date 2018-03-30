@@ -8,16 +8,16 @@
 
 #include "Point.h"
 
-class Line {
+class Radial {
     public:
         Point point;
         Vector direction;
 
-        Line(const Point &point, const Vector &direction);
+        Radial(const Point &point, const Vector &direction);
 
-        Line(const Point &point, double directionX, double directionY);
+        Radial(const Point &point, double directionX, double directionY);
 
-        virtual ~Line();
+        virtual ~Radial();
 };
 
 

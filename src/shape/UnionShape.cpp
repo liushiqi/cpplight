@@ -8,7 +8,7 @@ UnionShape::UnionShape(const Shape *shape1, const Shape *shape2) : Shape(0.0), s
 
 UnionShape::~UnionShape() = default;
 
-std::set<IntersectPoint> UnionShape::intersect(const Line &line) const {
+std::set<IntersectPoint> UnionShape::intersect(const Radial &line) const {
     auto intersect1 = shape1->intersect(line);
     auto intersect2 = shape2->intersect(line);
     auto intersect = std::set<IntersectPoint>();

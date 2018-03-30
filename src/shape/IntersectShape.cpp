@@ -8,12 +8,12 @@ IntersectShape::IntersectShape(const Shape *shape1, const Shape *shape2) : Shape
 
 IntersectShape::~IntersectShape() = default;
 
-std::set<IntersectPoint> IntersectShape::intersect(const Line &line) const {
+std::set<IntersectPoint> IntersectShape::intersect(const Radial &line) const {
     auto intersect1 = shape1->intersect(line);
     auto intersect2 = shape2->intersect(line);
     auto intersect = std::set<IntersectPoint>();
     intersect.insert(IntersectPoint(line.point, 0.0, 0.0));
-    IntersectPoint currentPoint = IntersectPoint(line.point, 0.0, 0.0);
+    auto currentPoint = IntersectPoint(line.point, 0.0, 0.0);
     if (intersect1.size() == 1 && intersect2.size() == 1) {}
     else if (intersect1.size() == 1) {
         for (auto &&point : intersect2) {

@@ -9,8 +9,8 @@
 
 #ifdef HAVE_OPENCV
 
-#include <ml.h>
-#include <highgui.h>
+#include <opencv2/highgui.hpp>
+#include <opencv2/ml.hpp>
 
 #endif
 
@@ -36,7 +36,7 @@ Shape *Scene::remove(Shape *shape) {
 }
 
 double Scene::trace(const Point &point, double degree) {
-    Line line(point, std::cos(degree), std::sin(degree));
+    Radial line(point, std::cos(degree), std::sin(degree));
     double minDistance = std::numeric_limits<double>::max();
     double emissive = 0.0f;
     for (auto shape : shapes) {

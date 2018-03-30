@@ -8,22 +8,34 @@
 #include <random>
 #include <set>
 #include "Point.h"
-#include "Line.h"
+#include "Radial.h"
 
 class Shape {
     protected:
-        double emissive;
+        double luminance;
 
     public:
-        explicit Shape(double emissive);
+        /**
+         * Constructor of the virtual class shape.
+         *
+         * @param luminance the luminance of a light source, 0.0 if the shape not luminescence.
+         */
+        explicit Shape(double luminance);
 
         virtual ~Shape() = default;
 
-        virtual std::set<IntersectPoint> intersect(const Line &line) const = 0;
+        /**
+         * Calculate the intersect points of this shape and the given radial. Returns the base point of the radial
+         *
+         *
+         * @param radial the radial to be intersected with.
+         * @return the set of intersect points.
+         */
+        virtual std::set<IntersectPoint> intersect(const Radial &radial) const = 0;
 
-        double getEmissive() const { return emissive; }
+        double getEmissive() const { return luminance; }
 
-        void setEmissive(double emissive) { this->emissive = emissive; }
+        void setEmissive(double emissive) { this->luminance = emissive; }
 
         bool operator==(Shape &another);
 

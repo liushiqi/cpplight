@@ -19,7 +19,7 @@ class Circle : virtual public Shape {
 
         ~Circle() override;
 
-        std::set<IntersectPoint> intersect(const Line &line) const override;
+        std::set<IntersectPoint> intersect(const Radial &line) const override;
 
         long hashCode() const override;
 

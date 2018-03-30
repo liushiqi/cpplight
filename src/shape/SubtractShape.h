@@ -17,7 +17,7 @@ class SubtractShape : virtual public Shape {
 
         ~SubtractShape() override;
 
-        std::set<IntersectPoint> intersect(const Line &line) const override;
+        std::set<IntersectPoint> intersect(const Radial &radial) const override;
 
         long hashCode() const override;
 

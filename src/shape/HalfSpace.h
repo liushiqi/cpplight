@@ -38,7 +38,7 @@ class HalfSpace : virtual public Shape {
 
         ~HalfSpace() override;
 
-        std::set<IntersectPoint> intersect(const Line &line) const override;
+        std::set<IntersectPoint> intersect(const Radial &line) const override;
 
         long hashCode() const override;
 

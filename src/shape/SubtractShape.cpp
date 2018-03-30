@@ -6,14 +6,14 @@
 
 SubtractShape::SubtractShape(const Shape *shape1, const Shape *shape2) : Shape(0.0), shape1(shape1), shape2(shape2) {}
 
-SubtractShape::~SubtractShape() {}
+SubtractShape::~SubtractShape() = default;
 
-std::set<IntersectPoint> SubtractShape::intersect(const Line &line) const {
-    auto intersect1 = shape1->intersect(line);
-    auto intersect2 = shape2->intersect(line);
+std::set<IntersectPoint> SubtractShape::intersect(const Radial &radial) const {
+    auto intersect1 = shape1->intersect(radial);
+    auto intersect2 = shape2->intersect(radial);
     auto intersect = std::set<IntersectPoint>();
-    intersect.insert(IntersectPoint(line.point, 0.0, 0.0));
-    IntersectPoint currentPoint = IntersectPoint(line.point, 0.0, 0.0);
+    intersect.insert(IntersectPoint(radial.point, 0.0, 0.0));
+    IntersectPoint currentPoint = IntersectPoint(radial.point, 0.0, 0.0);
     if (intersect1.size() == 1 && intersect2.size() == 1) {}
     else if (intersect1.size() == 1) {
         for (auto &&point : intersect2) {
