@@ -2,7 +2,7 @@
 // Created by liu on 18-1-10.
 //
 
-#include "shape/Scene.h"
+#include "utils/Scene.h"
 #include "shape/HalfSpace.h"
 #include "shape/Circle.h"
 #include "shape/UnionShape.h"

@@ -5,7 +5,7 @@
 #ifndef CPPLIGHT_UNIONSHAPE_H
 #define CPPLIGHT_UNIONSHAPE_H
 
-#include "Shape.h"
+#include "../utils/Shape.h"
 
 class UnionShape : virtual public Shape {
     private:

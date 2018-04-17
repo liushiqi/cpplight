@@ -4,29 +4,29 @@ project(cpplight)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-        src/shape/Shape.cpp
-        src/shape/Shape.h
-        src/shape/Point.cpp
-        src/shape/Point.h
-        src/shape/Circle.cpp
-        src/shape/Circle.h
-        src/shape/Scene.cpp
-        src/shape/Scene.h
-        src/shape/Vector.cpp
-        src/shape/Vector.h
-        src/shape/HalfSpace.cpp
-        src/shape/HalfSpace.h
-        src/shape/Shape.cpp
-        src/shape/UnionShape.cpp
-        src/shape/UnionShape.h
-        src/shape/IntersectShape.cpp
-        src/shape/IntersectShape.h
-        src/shape/SubtractShape.cpp
-        src/shape/SubtractShape.h
-        src/shape/Rectangle.cpp
-        src/shape/Rectangle.h
-        src/shape/Radial.cpp
-        src/shape/Radial.h)
+        src/utils/Shape.cpp
+        src/utils/Shape.h
+        src/utils/Point.cpp
+        src/utils/Point.h
+        src/shapes/Circle.cpp
+        src/shapes/Circle.h
+        src/utils/Scene.cpp
+        src/utils/Scene.h
+        src/utils/Vector.cpp
+        src/utils/Vector.h
+        src/shapes/HalfSpace.cpp
+        src/shapes/HalfSpace.h
+        src/utils/Shape.cpp
+        src/shapes/UnionShape.cpp
+        src/shapes/UnionShape.h
+        src/shapes/IntersectShape.cpp
+        src/shapes/IntersectShape.h
+        src/shapes/SubtractShape.cpp
+        src/shapes/SubtractShape.h
+        src/shapes/Rectangle.cpp
+        src/shapes/Rectangle.h
+        src/utils/Radial.cpp
+        src/utils/Radial.h)
 add_executable(cpplight ${SOURCE_FILES} src/main.cpp)
 
 set(Boost_USE_STATIC_LIBS OFF)

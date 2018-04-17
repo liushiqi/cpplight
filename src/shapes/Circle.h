@@ -5,7 +5,7 @@
 #ifndef CPPLIGHT_CIRCLE_H
 #define CPPLIGHT_CIRCLE_H
 
-#include "Shape.h"
+#include "../utils/Shape.h"
 
 class Circle : virtual public Shape {
     private:

@@ -3,7 +3,7 @@
 //
 
 #include "Rectangle.h"
-#include "Scene.h"
+#include "../utils/Scene.h"
 
 Rectangle::Rectangle(const Point &center, const Vector &halfWidth, const Vector &halfHeight,
                      double emissive) : Shape(emissive), center(center), halfWidthVector(halfWidth),

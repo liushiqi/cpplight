@@ -5,7 +5,7 @@
 #ifndef CPPLIGHT_RECTANGLE_H
 #define CPPLIGHT_RECTANGLE_H
 
-#include "Shape.h"
+#include "../utils/Shape.h"
 
 class Rectangle : virtual public Shape {
     private:

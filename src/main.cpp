@@ -2,11 +2,11 @@
 // Created by liu onchangeable.
 //
 
-#include "shape/Shape.h"
-#include "shape/Scene.h"
-#include "shape/HalfSpace.h"
-#include "shape/Circle.h"
-#include "shape/UnionShape.h"
+#include "utils/Shape.h"
+#include "utils/Scene.h"
+#include "shapes/HalfSpace.h"
+#include "shapes/Circle.h"
+#include "shapes/UnionShape.h"
 
 int main() {
     auto *halfSpace = new HalfSpace(0.5, 0.5, 0.0, 0.1, 0.8);

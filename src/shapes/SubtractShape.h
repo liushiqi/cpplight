@@ -5,7 +5,7 @@
 #ifndef CPPLIGHT_SUBSTRACTSHAPE_H
 #define CPPLIGHT_SUBSTRACTSHAPE_H
 
-#include "Shape.h"
+#include "../utils/Shape.h"
 
 class SubtractShape : virtual public Shape {
     private:

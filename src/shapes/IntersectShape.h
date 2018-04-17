@@ -5,7 +5,7 @@
 #ifndef CPPLIGHT_INTERSECTSHAPE_H
 #define CPPLIGHT_INTERSECTSHAPE_H
 
-#include "Shape.h"
+#include "../utils/Shape.h"
 
 class IntersectShape : virtual public Shape {
     private:

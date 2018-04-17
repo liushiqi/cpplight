@@ -34,11 +34,11 @@ class Point {
         Point &operator-=(const Vector &vector);
 
         Point operator/(double proportion) const;
-        
+
         Point &operator/=(double proportion);
-        
+
         Point operator/(const Vector &proportion) const;
-        
+
         Point &operator/=(const Vector &proportion);
 
         Vector operator-(const Point &point) const;

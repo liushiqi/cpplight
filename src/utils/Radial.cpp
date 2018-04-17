@@ -7,6 +7,6 @@
 Radial::Radial(const Point &point, const Vector &direction) : point(point), direction(direction) {}
 
 Radial::Radial(const Point &point, double directionX, double directionY) : point(point),
-                                                                       direction(directionX, directionY) {}
+                                                                           direction(directionX, directionY) {}
 
 Radial::~Radial() = default;

@@ -5,7 +5,7 @@
 #ifndef CPPLIGHT_HALFSPACE_H
 #define CPPLIGHT_HALFSPACE_H
 
-#include "Shape.h"
+#include "../utils/Shape.h"
 
 /**
  * The shape is a line which contains the point <b>base</b>,<br>
